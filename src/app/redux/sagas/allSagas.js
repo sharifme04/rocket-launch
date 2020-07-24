@@ -1,4 +1,4 @@
-import { call, put, takeLatest, putResolve } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 import {
   FETCH_ALL_LAUNCHES_REQUESTED,
   FETCH_DETAILS_REQUESTED
@@ -20,14 +20,11 @@ function* fetchLaunches(action) {
   if (launches) {
     //console.log(launches);
     yield put(launchesSuccess(launches));
-    yield launches.map(e=> {
+    const rocket = yield launches.map(e=> put(api.fetchRocketData(e)));
 
-      const rocket =  Promise.resolve(api.fetchRocketData(e));
-      
     if(rocket) {
       console.log(rocket);
     };
-    });
   } else {
     yield put(launchesFail(error));
   }
