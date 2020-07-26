@@ -3,8 +3,6 @@ import dayjs from 'dayjs'
 import PropTypes from "prop-types";
 
 const Histories = ({ history }) => {
-  console.log("====================================");
-  console.log(history);
   return (
     <div>
       {history?.isLoading ? (
@@ -26,9 +24,9 @@ const Histories = ({ history }) => {
                      <td>{e.details}</td>
                      <td> <a href={e.links.wikipedia}>More...</a></td>
                    </tr>
-                  
+
                   )}
-  
+
           </tbody>
         </table>
       </div>

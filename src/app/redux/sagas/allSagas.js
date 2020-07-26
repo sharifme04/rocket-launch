@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from "redux-saga/effects";
+import { call,all,fork, put,takeEvery, takeLatest } from "redux-saga/effects";
 import {
   FETCH_ALL_LAUNCHES_REQUESTED,
   FETCH_DETAILS_REQUESTED
@@ -17,14 +17,11 @@ import { api } from "../services/services";
 
 function* fetchLaunches(action) {
   const { launches, error } = yield call(api.fetchLunchData, action);
-  if (launches) {
-    //console.log(launches);
-    yield put(launchesSuccess(launches));
-    const rocket = yield launches.map(e=> put(api.fetchRocketData(e)));
+  const updateLaunches = yield all (launches.map(e=> api.fetchRocketData(e)));
 
-    if(rocket) {
-      console.log(rocket);
-    };
+  if (updateLaunches) {
+    yield put(launchesSuccess(updateLaunches));
+
   } else {
     yield put(launchesFail(error));
   }
