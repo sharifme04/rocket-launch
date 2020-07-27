@@ -29,8 +29,8 @@ const Lunches = ({ launches }) => {
   };
 
   return (
-    <div>
-      <div>
+    <div className="launch-container">
+      <div className="search-fields">
         <input
           type="text"
           value={inputValues.searchInput}
@@ -52,7 +52,9 @@ const Lunches = ({ launches }) => {
         </label>
       </div>
       {launches?.isLoading ? (
-        <div className="loader"></div>
+        <div className="loader-outer">
+          <div className="loader"></div>
+        </div>
       ) : (
         <div>
           <Table orbitFiltered={orbitFiltered && orbitFiltered} />

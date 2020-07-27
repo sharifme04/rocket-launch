@@ -79,8 +79,8 @@ const Modal = forwardRef((props, ref) => {
           onReady={onStart}
         />
       )}
-      <form>
-        <label>
+      <form className="form-container">
+        <label className="select-label">
           <input
             name="details"
             type="checkbox"
@@ -103,8 +103,10 @@ const Modal = forwardRef((props, ref) => {
         <br />
         <button
           onClick={() =>
-            inputValues && dispatch(updateInformationLoading(userId, inputValues))
+            inputValues &&
+            dispatch(updateInformationLoading(userId, inputValues))
           }
+          className="submit-button, home-button"
         >
           Submit Selected info
         </button>

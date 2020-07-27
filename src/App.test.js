@@ -1,11 +1,18 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import App from './App'
+import React from "react";
+import { Provider } from "react-redux";
+import configureMockStore from "redux-mock-store";
+import renderer from "react-test-renderer";
+import { shallow } from "enzyme";
+import App from "./App";
 
-describe('App', () => {
-    it('should render initial layout', () => {
-        const wrapper = shallow(<App />);
+const mockStore = configureMockStore();
+const store = mockStore({});
 
-        expect(wrapper).toBeTruthy();
-    })
-})
+test("should render initial layout", () => {
+  const component = shallow(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+  expect(component.exists()).toBe(true);
+});

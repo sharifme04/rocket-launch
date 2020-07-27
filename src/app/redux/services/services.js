@@ -26,7 +26,7 @@ export const api = {
   updateInformation(action) {
     console.log(action);
     return axios
-      .post(`${BASE_API}/${action.id}`,action.inputValues)
+      .post(`${BASE_API}/${action.id}`,action.inputValues)  //fake api
       .then(response => ({ information: response.data }))
       .catch(error => ({ error }));
   },

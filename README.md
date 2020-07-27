@@ -13,5 +13,7 @@ Then run the test by following command
 ### `npm test`
 
 Please see the `screenshot` to see the view
-![screenshot](screenshots/Launch.png)
-![screenshot](screenshots/Details.png)
+![screenshot](screenshots/home.PNG)
+![screenshot](screenshots/history.PNG)
+![screenshot](screenshots/launch.PNG)
+![screenshot](screenshots/modal.PNG)

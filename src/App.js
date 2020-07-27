@@ -14,6 +14,7 @@ const App = () => {
   return (
     <div className="flex-container">
       <h1>HQ app</h1>
+      <hr/>
       <div className="container-fluid">
         <Route exact path="/" render={() => <Home />} />
         <Route
