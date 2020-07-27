@@ -7,18 +7,10 @@ import { launchesRequest } from "../redux/actions/launches";
 import Table from "./Table";
 
 const Lunches = ({ launches }) => {
-  //  const [value, setValue] = useState("");
-  //const [orbit, setOrbit] = useState("leo");
   const [inputValues, setInputValues] = useState({
     searchInput: "",
     orbit: "leo"
   });
-  //const dispatch = useDispatch();
-  /*   const launches = useSelector(state => state.launches);
-
-  useEffect(() => {
-    dispatch(launchesRequest());
-  }, []); */
   const orbitFiltered = launches?.launches
     ?.filter(k => k.payload_weights.some(e => e.id === inputValues.orbit))
     ?.filter(
@@ -30,17 +22,6 @@ const Lunches = ({ launches }) => {
           .format("DD/MM/YYYY")
           .includes(inputValues.searchInput)
     );
-
-  console.log(orbitFiltered);
-
-  // const handleOrbit = event => {
-  //   console.log(event.target);
-  //   setOrbit(event.target.value);
-  // };
-  // const handleChange = event => {
-  //   setValue(event.target.value);
-  // };
-  // //console.log(launches);
 
   const handleChange = event => {
     const { name, value } = event.target;

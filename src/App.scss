@@ -21,13 +21,13 @@ body {
     -webkit-animation: spin 2s linear infinite; /* Safari */
     animation: spin 2s linear infinite;
   }
-  
+
   /* Safari */
   @-webkit-keyframes spin {
     0% { -webkit-transform: rotate(0deg); }
     100% { -webkit-transform: rotate(360deg); }
   }
-  
+
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -37,9 +37,18 @@ body {
     border-collapse: collapse;
     width: 100%;
   }
-  
+  .hoverTable tr:hover {
+  background-color: #f2f2f2;
+  }
+
   th, td {
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+  }
+
+  .button-style {
+    position: absolute;
+    right: 0;
+    top: 0;
   }

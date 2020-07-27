@@ -4,7 +4,10 @@ import {
   FETCH_ALL_LAUNCHES_FAILURE,
   FETCH_DETAILS_REQUESTED,
   FETCH_DETAILS_SUCCESS,
-  FETCH_DETAILS_FAILURE
+  FETCH_DETAILS_FAILURE,
+  UPDATE_INFORMATION_LOADING,
+  UPDATE_INFORMATION_SUCCESS,
+  UPDATE_INFORMATION_FAILURE
 } from "../actionType/launchType";
 
 const initialState = {
@@ -42,6 +45,21 @@ export default function launches(state = initialState, action) {
         isLoading: false
       };
     case FETCH_DETAILS_FAILURE:
+      return {
+        ...state,
+        error: action.error
+      };
+    case UPDATE_INFORMATION_LOADING:
+      return {
+        ...state,
+        isUpdating: true
+      };
+    case UPDATE_INFORMATION_SUCCESS:
+      return {
+        information: state.information,
+        isUpdating: false
+      };
+    case UPDATE_INFORMATION_FAILURE:
       return {
         ...state,
         error: action.error

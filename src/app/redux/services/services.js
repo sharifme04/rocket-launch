@@ -6,18 +6,6 @@ export const api = {
     return axios
       .get(`${BASE_API}/launches`)
       .then(response => ({launches:response.data}))
-//       .then(async data=>{
-//          return {launches: data.map(async e => {
-//         return  await axios
-//             .get(`${BASE_API}/rockets/${e.rocket.rocket_id}`)
-//             .then(response=> response.data)
-//             .then(async response =>{
-//               items = [...items, {...e,payload_weights: response.payload_weights}];
-//                 return items;
-//             })
-//         })
-// }
-//       })
       .catch(error => ({ error }));
   },
   fetchHistoryData() {
@@ -29,22 +17,17 @@ export const api = {
 
   fetchRocketData(e){
     const id = e.rocket.rocket_id;
-   // console.log(id);
     return axios
     .get(`${BASE_API}/rockets/${id}`)
-    .then(response =>({...e,payload_weights: response.data.payload_weights})) // ({ rocket: response.data })  [...e, response.data.payload_weights]
-//.then(response => ({ rocket: response }))
+    .then(response =>({...e,payload_weights: response.data.payload_weights}))
     .catch(error => ({ error }));
+  },
 
-        // .then(async itemDetail => {
-    // return  {rocket:itemDetail.payload_weights};
-    //  // updateLaunches = [...e, itemDetail.payload_weights];
-    // })
-  }
-  /*   fetchDetailsData(flight_number) {
+  updateInformation(action) {
+    console.log(action);
     return axios
-      .get(`${LAUNCHES_API}/${flight_number}`)
-      .then(response => ({launch: response.data}))
-      .catch(error => ({error}));
-  }, */
+      .post(`${BASE_API}/${action.id}`,action.inputValues)
+      .then(response => ({ information: response.data }))
+      .catch(error => ({ error }));
+  },
 };

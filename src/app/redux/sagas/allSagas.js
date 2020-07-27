@@ -1,7 +1,15 @@
-import { call,all,fork, put,takeEvery, takeLatest } from "redux-saga/effects";
+import {
+  call,
+  all,
+  fork,
+  put,
+  takeEvery,
+  takeLatest
+} from "redux-saga/effects";
 import {
   FETCH_ALL_LAUNCHES_REQUESTED,
-  FETCH_DETAILS_REQUESTED
+  FETCH_DETAILS_REQUESTED,
+  UPDATE_INFORMATION_LOADING
 } from "../actionType/launchType";
 import { FETCH_ALL_HISTORY_REQUESTED } from "../actionType/historyType";
 
@@ -17,11 +25,10 @@ import { api } from "../services/services";
 
 function* fetchLaunches(action) {
   const { launches, error } = yield call(api.fetchLunchData, action);
-  const updateLaunches = yield all (launches.map(e=> api.fetchRocketData(e)));
+  const updateLaunches = yield all(launches.map(e => api.fetchRocketData(e)));
 
   if (updateLaunches) {
     yield put(launchesSuccess(updateLaunches));
-
   } else {
     yield put(launchesFail(error));
   }
@@ -35,17 +42,12 @@ function* fetchHistory(action) {
     yield put(historyFail(history));
   }
 }
-/* function* fetchDetailsLaunches(action) {
-  const {launch, error} = yield call(
-    api.fetchDetailsData,
-    action.flight_number,
-  );
-  if (launch) {
-    yield put(detailsLaunchesSuccess(launch));
-  } else {
-    yield put(detailsLaunchesFail(error));
-  }
-} */
+
+function* updateLaunchInfo(action) {
+  const { information, error } = yield call(api.updateInformation, action);
+  if (information) yield put(updateInformationSuccess(information));
+  else yield put(updateInformationFail(error));
+}
 
 export function* watchFetchLunches() {
   yield takeLatest(FETCH_ALL_LAUNCHES_REQUESTED, fetchLaunches);
@@ -55,6 +57,6 @@ export function* watchFetchHistory() {
   yield takeLatest(FETCH_ALL_HISTORY_REQUESTED, fetchHistory);
 }
 
-// export function* watchDetailsData() {
-//   yield takeLatest(FETCH_DETAILS_REQUESTED, fetchDetailsLaunches);
-// }
+export function* watchLaunchInfo() {
+  yield takeLatest(UPDATE_INFORMATION_LOADING, updateLaunchInfo);
+}
