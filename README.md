@@ -9,6 +9,8 @@ First install node_modules by
 Then run the app by following command
 ### `npm start`
 
+It will start on port 3000
+
 Please see the `screenshot` to see the view
 ![screenshot](screenshots/home.PNG)
 ![screenshot](screenshots/history.PNG)
