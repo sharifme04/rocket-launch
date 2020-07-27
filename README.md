@@ -9,9 +9,6 @@ First install node_modules by
 Then run the app by following command
 ### `npm start`
 
-Then run the test by following command
-### `npm test`
-
 Please see the `screenshot` to see the view
 ![screenshot](screenshots/home.PNG)
 ![screenshot](screenshots/history.PNG)
